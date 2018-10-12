@@ -26,3 +26,31 @@ insert into `product_info`(product_id, product_name,product_price,product_stock,
 ('111aaa','皮蛋粥',0.01,100,'taste good',0,11),
 ('aaabbb','蛋糕',10,23,'sweet',0,22),
 ('aaabba','油条',2,30,'早餐',0,22);
+
+create table `order_master`(
+`order_id` varchar(32) not null,
+`buyer_name` varchar(32) not null,
+`buyer_phone` varchar(32) not null,
+`buyer_address` varchar(128) not null,
+`buyer_openid` varchar(64) not null,
+`order_amount` decimal(8,2) not null,
+`order_status` tinyint(3) not null default '0',
+`pay_status` tinyint(3) not null default '0',
+`create_time` timestamp not null default current_timestamp,
+`update_time` timestamp not null default current_timestamp on UPDATE current_timestamp,
+primary key(`order_id`),
+key `idx_buyer_openid` (`buyer_openid`));
+
+create table `order_detail`(
+`detail_id` varchar(32) not null,
+`order_id` varchar(32) not null,
+`product_id` varchar(32) not null,
+`product_name` varchar(64) not null,
+`product_price` decimal(8,2) not null,
+`product_quantity` int not null,
+`product_icon` varchar(512),
+`create_time` timestamp not null default current_timestamp,
+`update_time` timestamp not null default current_timestamp on UPDATE current_timestamp,
+primary key(`detail_id`),
+key `idx_order_id` (`order_id`),
+foreign key(`order_id`) references order_master(`order_id`));
