@@ -10,12 +10,14 @@ import com.hhg.jerry.service.OrderService;
 import com.hhg.jerry.utils.KeyUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 /**
  * Created by lina on 2018/10/12.
  */
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -26,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO create(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
-        orderMaster.setOrderId(KeyUtils.getUniqueId());
+        orderDTO.setOrderId(KeyUtils.getUniqueId());
         BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMaster.setOrderAmount(new BigDecimal(3.0));
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());

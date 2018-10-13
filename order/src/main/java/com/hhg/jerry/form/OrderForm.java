@@ -13,6 +13,9 @@ public class OrderForm {
     @NotEmpty(message = "phone can't be null")
     private String phone;
 
+    @NotEmpty(message = "address can't be null")
+    private String address;
+
     @NotEmpty(message = "openid can't be null")
     private String openid;
 
@@ -49,5 +52,13 @@ public class OrderForm {
 
     public void setItems(String items) {
         this.items = items;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
