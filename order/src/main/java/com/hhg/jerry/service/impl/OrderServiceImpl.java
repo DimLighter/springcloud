@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
         BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMaster.setOrderAmount(totalPrice);
         orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
-        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode();
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMasterRepository.save(orderMaster);
 
         for(OrderDetail orderDetail : orderDTO.getOrderDetailList()){
