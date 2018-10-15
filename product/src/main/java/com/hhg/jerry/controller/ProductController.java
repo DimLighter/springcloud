@@ -2,6 +2,7 @@ package com.hhg.jerry.controller;
 
 import com.hhg.jerry.dataobject.ProductCategory;
 import com.hhg.jerry.dataobject.ProductInfo;
+import com.hhg.jerry.dto.CartDTO;
 import com.hhg.jerry.service.CategoryService;
 import com.hhg.jerry.service.ProductService;
 import com.hhg.jerry.utils.ResultVOUtils;
@@ -10,9 +11,7 @@ import com.hhg.jerry.visualobject.ProductVO;
 import com.hhg.jerry.visualobject.ResultVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +58,15 @@ public class ProductController {
         }
 
         return ResultVOUtils.success(productVOS);
+    }
+
+    @PostMapping("/listForOrder")
+    public List<ProductInfo> listForOrder(@RequestBody List<String> productIdList){
+        return productService.findByProductIdIn(productIdList);
+    }
+
+    @PostMapping("/decreaseStock")
+    public void decreaseStock(@RequestBody List<CartDTO> cartDTOList){
+        productService.decreaseStock(cartDTOList);
     }
 }

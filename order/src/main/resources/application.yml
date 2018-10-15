@@ -12,3 +12,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+#单节点你就报错？？？ 在调用listForOrder方法时、、、
+#PRODUCT:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+

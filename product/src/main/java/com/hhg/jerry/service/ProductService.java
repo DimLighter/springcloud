@@ -1,6 +1,7 @@
 package com.hhg.jerry.service;
 
 import com.hhg.jerry.dataobject.ProductInfo;
+import com.hhg.jerry.dto.CartDTO;
 
 import java.util.List;
 
@@ -9,4 +10,8 @@ import java.util.List;
  */
 public interface ProductService {
     List<ProductInfo> findUpAll();
+
+    List<ProductInfo> findByProductIdIn(List<String> productIdList);
+
+    void decreaseStock(List<CartDTO> cartDTOList);
 }
