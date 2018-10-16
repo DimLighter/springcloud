@@ -1,13 +1,13 @@
 spring:
   application:
     name: order
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: root
-    url: jdbc:mysql://127.0.0.1:3306/springcloud?characterEncoding=utf-8&useSSL=false
-  jpa:
-    show-sql: true
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config
+      profile: dev
+      label: develop
 eureka:
   client:
     service-url:
